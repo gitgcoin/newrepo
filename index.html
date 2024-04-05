@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Input Table</h1>
+        <form id="inputForm">
+            <label for="inputData">Enter your data (comma separated):</label>
+            <input type="text" id="inputData" name="inputData">
+            <button type="button" onclick="generateTable()">Generate Table</button>
+        </form>
+        <div id="tableContainer"></div>
+    </div>
+
+    <script>
+        function generateTable() {
+            var inputData = document.getElementById("inputData").value;
+            var dataArray = inputData.split(",");
+
+            var tableContainer = document.getElementById("tableContainer");
+            tableContainer.innerHTML = "";
+
+            var table = document.createElement("table");
+            var thead = document.createElement("thead");
+            var tbody = document.createElement("tbody");
+
+            var trHead = document.createElement("tr");
+            var th = document.createElement("th");
+            th.textContent = "Data";
+            trHead.appendChild(th);
+            thead.appendChild(trHead);
+
+            for (var i = 0; i < dataArray.length; i++) {
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                td.textContent = dataArray[i];
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            }
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            tableContainer.appendChild(table);
+        }
+    </script>
+</body>
+</html>
